@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "329479431575",
+    "project_id": "ansechr-ebb38",
+    "storage_bucket": "ansechr-ebb38.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329479431575:android:7d025accd082f0a28bd0d2",
+        "android_client_info": {
+          "package_name": "com.ansechr.careercompass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl7MeBf6yDhhYg_aE-JSwuEo_qZgvb__8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
