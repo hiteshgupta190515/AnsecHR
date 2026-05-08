@@ -17,6 +17,7 @@ class MyCourseDetailsController extends StateNotifier<MyCourse> {
   final Ref ref;
   MyCourseDetailsController(super.state, this.ref);
   final Box<HiveCartModel> _cartBox = Hive.box<HiveCartModel>(AppHSC.cartBox);
+
   Future<void> initVideo(String url) async {
     if (mounted) state = state.copyWith(videoLoading: true);
     try {
@@ -71,10 +72,12 @@ class MyCourseDetailsController extends StateNotifier<MyCourse> {
     }
   }
 
-  disposeController() {
+  @override
+  void dispose() {
+    state.videoPlayerController?.pause();
     state.videoPlayerController?.dispose();
     state.chewieController?.dispose();
-    state = state._update(state);
+    super.dispose();
   }
 
   getMyCourseDetails(int id) async {

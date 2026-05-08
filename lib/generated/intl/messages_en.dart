@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("I accept and agree to the"),
         "ago": MessageLookupByLibrary.simpleMessage("ago"),
         "allCategories": MessageLookupByLibrary.simpleMessage("All Categories"),
-        "allCourse": MessageLookupByLibrary.simpleMessage("All Courses"),
+        "allCourse": MessageLookupByLibrary.simpleMessage("All Training Sessions"),
         "allReadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "answeredQuestions":
@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "authHomeDes": MessageLookupByLibrary.simpleMessage(
             "Unlock Skills Anytime, Anywhere with"),
         "backToCourseDec": MessageLookupByLibrary.simpleMessage(
-            "Back to course for show details."),
+            "Back to training session for show details."),
         "backtoClass": MessageLookupByLibrary.simpleMessage("Back to Class"),
         "bestTeacher": MessageLookupByLibrary.simpleMessage("Best Teacher"),
         "blogDetails": MessageLookupByLibrary.simpleMessage("Blog Details"),
@@ -72,15 +72,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations"),
         "coourseEnrolledSuccess": MessageLookupByLibrary.simpleMessage(
-            "Your course has been enrolled successfully"),
+            "Your training session has been enrolled successfully"),
         "coupon": MessageLookupByLibrary.simpleMessage("Coupon"),
         "couponDec": MessageLookupByLibrary.simpleMessage("Have any Coupon?"),
         "couponFilHint": MessageLookupByLibrary.simpleMessage("Enter the code"),
-        "course": MessageLookupByLibrary.simpleMessage("Courses"),
-        "courseDetails": MessageLookupByLibrary.simpleMessage("Course Details"),
+        "course": MessageLookupByLibrary.simpleMessage("Training Sessions"),
+        "courseDetails": MessageLookupByLibrary.simpleMessage("Training Session Details"),
         "courseInstructor":
-            MessageLookupByLibrary.simpleMessage("Course Instructor"),
-        "coursePrice": MessageLookupByLibrary.simpleMessage("Course Price"),
+            MessageLookupByLibrary.simpleMessage("Training Session Instructor"),
+        "coursePrice": MessageLookupByLibrary.simpleMessage("Training Session Price"),
         "createNewPass": MessageLookupByLibrary.simpleMessage("New Password"),
         "createPassword":
             MessageLookupByLibrary.simpleMessage("Create Password"),
@@ -134,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "free": MessageLookupByLibrary.simpleMessage("Free"),
-        "freeCourse": MessageLookupByLibrary.simpleMessage("Free Courses"),
+        "freeCourse": MessageLookupByLibrary.simpleMessage("Free Training Sessions"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "getStarted":
             MessageLookupByLibrary.simpleMessage("Get Started As Guest"),
@@ -161,13 +161,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "loadMore": MessageLookupByLibrary.simpleMessage("Load More"),
         "lockCertificate": MessageLookupByLibrary.simpleMessage(
-            "The certificate will be unlocked when your course has been finished."),
+            "The certificate will be unlocked when your training session has been finished."),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "loginFailDes": MessageLookupByLibrary.simpleMessage(
             "The id or the password doesn\'t match. please try again."),
         "loginForGetCourse": MessageLookupByLibrary.simpleMessage(
-            "For get your courses please login."),
+            "For get your training sessions please login."),
         "loginHeaderText": MessageLookupByLibrary.simpleMessage(
             "Boost you skill always and forever."),
         "loginWithPassword":
@@ -187,9 +187,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "minutes": MessageLookupByLibrary.simpleMessage("minutes"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "mostPopularCourse":
-            MessageLookupByLibrary.simpleMessage("Most Popular Courses"),
-        "myCourses": MessageLookupByLibrary.simpleMessage("My Courses"),
-        "myCoursesTab": MessageLookupByLibrary.simpleMessage("My Courses"),
+            MessageLookupByLibrary.simpleMessage("Most Popular Training Sessions"),
+        "myCourses": MessageLookupByLibrary.simpleMessage("My Training Sessions"),
+        "myCoursesTab": MessageLookupByLibrary.simpleMessage("My Training Sessions"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "needHelp": MessageLookupByLibrary.simpleMessage("Need Help?"),
@@ -200,7 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noCategoriesFound":
             MessageLookupByLibrary.simpleMessage("No category found!"),
         "noCoursePurchased":
-            MessageLookupByLibrary.simpleMessage("No Course Purchased"),
+            MessageLookupByLibrary.simpleMessage("No Training Session Purchased"),
         "noDataFound": MessageLookupByLibrary.simpleMessage("No data found"),
         "noInternetDes": MessageLookupByLibrary.simpleMessage(
             "No Internet connection was found. Check your connection or try again."),
@@ -238,7 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payableAmount": MessageLookupByLibrary.simpleMessage("Payable Amount"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "paymentDes": MessageLookupByLibrary.simpleMessage(
-            "You have accessed your desired course. Now you can boost your Skills Anytime, Anywhere with"),
+            "You have accessed your desired training session. Now you can boost your Skills Anytime, Anywhere with"),
         "paymentHistory":
             MessageLookupByLibrary.simpleMessage("Payment and History"),
         "paymentMethodDec":
@@ -266,12 +266,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "questiontype": MessageLookupByLibrary.simpleMessage("Question type"),
         "quize": MessageLookupByLibrary.simpleMessage("Quize"),
         "rateDec": MessageLookupByLibrary.simpleMessage(
-            "Write about what you have learned from this course and inspire others."),
+            "Write about what you have learned from this training session and inspire others."),
         "rateNow": MessageLookupByLibrary.simpleMessage("Rate Now"),
-        "rateQus": MessageLookupByLibrary.simpleMessage("How was the course?"),
+        "rateQus": MessageLookupByLibrary.simpleMessage("How was the training session?"),
         "rated": MessageLookupByLibrary.simpleMessage("Rated"),
         "ratedThisCourse":
-            MessageLookupByLibrary.simpleMessage("rated this course."),
+            MessageLookupByLibrary.simpleMessage("rated this training session."),
         "rating": MessageLookupByLibrary.simpleMessage("Rating"),
         "recommendedProduct":
             MessageLookupByLibrary.simpleMessage(" Recommended for you"),
@@ -329,7 +329,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalMark": MessageLookupByLibrary.simpleMessage("Total Mark"),
         "unlockCertificate": MessageLookupByLibrary.simpleMessage(
-            "Your course has been completed and your certificate is now ready."),
+            "Your training session has been completed and your certificate is now ready."),
         "updateProfile": MessageLookupByLibrary.simpleMessage("Update Profile"),
         "uploadFromGallery":
             MessageLookupByLibrary.simpleMessage("Upload From Gallery"),
@@ -342,8 +342,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "video": MessageLookupByLibrary.simpleMessage("Video"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "viewAllCourses":
-            MessageLookupByLibrary.simpleMessage("View All Courses"),
-        "viewCourse": MessageLookupByLibrary.simpleMessage("View Course"),
+            MessageLookupByLibrary.simpleMessage("View All Training Sessions"),
+        "viewCourse": MessageLookupByLibrary.simpleMessage("View Training Session"),
         "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
         "week": MessageLookupByLibrary.simpleMessage("week"),
         "weeks": MessageLookupByLibrary.simpleMessage("weeks"),

@@ -15,12 +15,12 @@ class CategoryModel {
       this.courseCount});
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'] != null ? int.tryParse(json['id'].toString()) : null;
     title = json['title'];
     image = json['image'];
-    isFeatured = json['is_featured'];
+    isFeatured = json['is_featured'] != null ? int.tryParse(json['is_featured'].toString()) : null;
     color = json['color'];
-    courseCount = json['course_count'];
+    courseCount = json['course_count'] != null ? int.tryParse(json['course_count'].toString()) : null;
   }
 
   Map<String, dynamic> toJson() {

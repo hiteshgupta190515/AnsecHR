@@ -233,7 +233,7 @@ class S {
   /// `No Course Purchased`
   String get noCoursePurchased {
     return Intl.message(
-      'No Course Purchased',
+      'No Training Session Purchased',
       name: 'noCoursePurchased',
       desc: '',
       args: [],
@@ -440,20 +440,20 @@ class S {
     );
   }
 
-  /// `Courses`
+  /// `Training Sessions`
   String get course {
     return Intl.message(
-      'Courses',
+      'Training Sessions',
       name: 'course',
       desc: '',
       args: [],
     );
   }
 
-  /// `Most Popular Courses`
+  /// `Most Popular Training Sessions`
   String get mostPopularCourse {
     return Intl.message(
-      'Most Popular Courses',
+      'Most Popular Training Sessions',
       name: 'mostPopularCourse',
       desc: '',
       args: [],
@@ -480,30 +480,30 @@ class S {
     );
   }
 
-  /// `All Courses`
+  /// `All Training Sessions`
   String get allCourse {
     return Intl.message(
-      'All Courses',
+      'All Training Sessions',
       name: 'allCourse',
       desc: '',
       args: [],
     );
   }
 
-  /// `Free Courses`
+  /// `Free Training Sessions`
   String get freeCourse {
     return Intl.message(
-      'Free Courses',
+      'Free Training Sessions',
       name: 'freeCourse',
       desc: '',
       args: [],
     );
   }
 
-  /// `View All Courses`
+  /// `View All Training Sessions`
   String get viewAllCourses {
     return Intl.message(
-      'View All Courses',
+      'View All Training Sessions',
       name: 'viewAllCourses',
       desc: '',
       args: [],
@@ -513,7 +513,7 @@ class S {
   /// `Course Details`
   String get courseDetails {
     return Intl.message(
-      'Course Details',
+      'Training Session Details',
       name: 'courseDetails',
       desc: '',
       args: [],
@@ -573,7 +573,7 @@ class S {
   /// `Course Instructor`
   String get courseInstructor {
     return Intl.message(
-      'Course Instructor',
+      'Training Session Instructor',
       name: 'courseInstructor',
       desc: '',
       args: [],
@@ -583,7 +583,7 @@ class S {
   /// `My Courses`
   String get myCourses {
     return Intl.message(
-      'My Courses',
+      'My Training Sessions',
       name: 'myCourses',
       desc: '',
       args: [],
@@ -593,7 +593,7 @@ class S {
   /// `My Courses`
   String get myCoursesTab {
     return Intl.message(
-      'My Courses',
+      'My Training Sessions',
       name: 'myCoursesTab',
       desc: '',
       args: [],
@@ -643,7 +643,7 @@ class S {
   /// `rated this course.`
   String get ratedThisCourse {
     return Intl.message(
-      'rated this course.',
+      'rated this training session.',
       name: 'ratedThisCourse',
       desc: '',
       args: [],
@@ -713,7 +713,7 @@ class S {
   /// `Back to course for show details.`
   String get backToCourseDec {
     return Intl.message(
-      'Back to course for show details.',
+      'Back to training session for show details.',
       name: 'backToCourseDec',
       desc: '',
       args: [],
@@ -823,7 +823,7 @@ class S {
   /// `Course Price`
   String get coursePrice {
     return Intl.message(
-      'Course Price',
+      'Training Session Price',
       name: 'coursePrice',
       desc: '',
       args: [],
@@ -923,7 +923,7 @@ class S {
   /// `You have accessed your desired course. Now you can boost your Skills Anytime, Anywhere with`
   String get paymentDes {
     return Intl.message(
-      'You have accessed your desired course. Now you can boost your Skills Anytime, Anywhere with',
+      'You have accessed your desired training session. Now you can boost your Skills Anytime, Anywhere with',
       name: 'paymentDes',
       desc: '',
       args: [],
@@ -943,7 +943,7 @@ class S {
   /// `How was the course?`
   String get rateQus {
     return Intl.message(
-      'How was the course?',
+      'How was the training session?',
       name: 'rateQus',
       desc: '',
       args: [],
@@ -953,7 +953,7 @@ class S {
   /// `Write about what you have learned from this course and inspire others.`
   String get rateDec {
     return Intl.message(
-      'Write about what you have learned from this course and inspire others.',
+      'Write about what you have learned from this training session and inspire others.',
       name: 'rateDec',
       desc: '',
       args: [],
@@ -983,7 +983,7 @@ class S {
   /// `View Course`
   String get viewCourse {
     return Intl.message(
-      'View Course',
+      'View Training Session',
       name: 'viewCourse',
       desc: '',
       args: [],
@@ -1103,7 +1103,7 @@ class S {
   /// `Your course has been completed and your certificate is now ready.`
   String get unlockCertificate {
     return Intl.message(
-      'Your course has been completed and your certificate is now ready.',
+      'Your training session has been completed and your certificate is now ready.',
       name: 'unlockCertificate',
       desc: '',
       args: [],
@@ -1113,7 +1113,7 @@ class S {
   /// `The certificate will be unlocked when your course has been finished.`
   String get lockCertificate {
     return Intl.message(
-      'The certificate will be unlocked when your course has been finished.',
+      'The certificate will be unlocked when your training session has been finished.',
       name: 'lockCertificate',
       desc: '',
       args: [],
@@ -1343,7 +1343,7 @@ class S {
   /// `For get your courses please login.`
   String get loginForGetCourse {
     return Intl.message(
-      'For get your courses please login.',
+      'For get your training sessions please login.',
       name: 'loginForGetCourse',
       desc: '',
       args: [],
@@ -2353,7 +2353,7 @@ class S {
   /// `Your course has been enrolled successfully`
   String get coourseEnrolledSuccess {
     return Intl.message(
-      'Your course has been enrolled successfully',
+      'Your training session has been enrolled successfully',
       name: 'coourseEnrolledSuccess',
       desc: '',
       args: [],

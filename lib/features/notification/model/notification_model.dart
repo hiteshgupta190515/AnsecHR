@@ -68,9 +68,9 @@ class NotificationModel {
   factory NotificationModel.fromMap(Map<String, dynamic> map) {
     bool isRead = map['is_read'] == 0 ? false : true;
     return NotificationModel(
-      id: map['id'] != null ? map['id'] as int : null,
+      id: map['id'] != null ? int.tryParse(map['id'].toString()) : null,
       logo: map['logo'] != null ? map['logo'] as String : null,
-      courseId: map['course_id'] != null ? map['course_id'] as int : null,
+      courseId: map['course_id'] != null ? int.tryParse(map['course_id'].toString()) : null,
       type: map['type'] != null ? map['type'] as String : null,
       heading: map['heading'] != null ? map['heading'] as String : null,
       content: map['content'] != null ? map['content'] as String : null,

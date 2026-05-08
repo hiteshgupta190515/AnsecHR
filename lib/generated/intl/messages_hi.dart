@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ago": MessageLookupByLibrary.simpleMessage("पहले"),
         "allCategories":
             MessageLookupByLibrary.simpleMessage("सभी श्रेणियां"),
-        "allCourse": MessageLookupByLibrary.simpleMessage("सभी कोर्स"),
+        "allCourse": MessageLookupByLibrary.simpleMessage("सभी प्रशिक्षण सत्र"),
         "allReadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("पहले से खाता है?"),
         "answeredQuestions":
@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "authHomeDes": MessageLookupByLibrary.simpleMessage(
             "कभी भी, कहीं भी कौशल अनलॉक करें"),
         "backToCourseDec": MessageLookupByLibrary.simpleMessage(
-            "विवरण देखने के लिए कोर्स पर वापस जाएं।"),
+            "विवरण देखने के लिए प्रशिक्षण सत्र पर वापस जाएं।"),
         "backtoClass":
             MessageLookupByLibrary.simpleMessage("कक्षा में वापस"),
         "bestTeacher":
@@ -80,17 +80,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations":
             MessageLookupByLibrary.simpleMessage("बधाई हो"),
         "coourseEnrolledSuccess": MessageLookupByLibrary.simpleMessage(
-            "आपका कोर्स सफलतापूर्वक नामांकित हो गया है"),
+            "आपका प्रशिक्षण सत्र सफलतापूर्वक नामांकित हो गया है"),
         "coupon": MessageLookupByLibrary.simpleMessage("कूपन"),
         "couponDec": MessageLookupByLibrary.simpleMessage("कोई कूपन है?"),
         "couponFilHint":
             MessageLookupByLibrary.simpleMessage("कोड दर्ज करें"),
-        "course": MessageLookupByLibrary.simpleMessage("कोर्स"),
+        "course": MessageLookupByLibrary.simpleMessage("प्रशिक्षण सत्र"),
         "courseDetails":
-            MessageLookupByLibrary.simpleMessage("कोर्स विवरण"),
+            MessageLookupByLibrary.simpleMessage("प्रशिक्षण सत्र विवरण"),
         "courseInstructor":
-            MessageLookupByLibrary.simpleMessage("कोर्स प्रशिक्षक"),
-        "coursePrice": MessageLookupByLibrary.simpleMessage("कोर्स मूल्य"),
+            MessageLookupByLibrary.simpleMessage("प्रशिक्षण सत्र प्रशिक्षक"),
+        "coursePrice": MessageLookupByLibrary.simpleMessage("प्रशिक्षण सत्र मूल्य"),
         "createNewPass": MessageLookupByLibrary.simpleMessage("नया पासवर्ड"),
         "createPassword":
             MessageLookupByLibrary.simpleMessage("पासवर्ड बनाएं"),
@@ -151,7 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("पासवर्ड भूल गए?"),
         "free": MessageLookupByLibrary.simpleMessage("मुफ्त"),
-        "freeCourse": MessageLookupByLibrary.simpleMessage("मुफ्त कोर्स"),
+        "freeCourse": MessageLookupByLibrary.simpleMessage("मुफ्त प्रशिक्षण सत्र"),
         "fullName": MessageLookupByLibrary.simpleMessage("पूरा नाम"),
         "getStarted": MessageLookupByLibrary.simpleMessage(
             "अतिथि के रूप में शुरू करें"),
@@ -179,13 +179,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("लाइट"),
         "loadMore": MessageLookupByLibrary.simpleMessage("और लोड करें"),
         "lockCertificate": MessageLookupByLibrary.simpleMessage(
-            "जब आपका कोर्स समाप्त हो जाएगा तो प्रमाणपत्र अनलॉक हो जाएगा।"),
+            "जब आपका प्रशिक्षण सत्र समाप्त हो जाएगा तो प्रमाणपत्र अनलॉक हो जाएगा।"),
         "logOut": MessageLookupByLibrary.simpleMessage("लॉग आउट"),
         "login": MessageLookupByLibrary.simpleMessage("लॉग इन"),
         "loginFailDes": MessageLookupByLibrary.simpleMessage(
             "आईडी या पासवर्ड मेल नहीं खाता। कृपया पुनः प्रयास करें।"),
         "loginForGetCourse": MessageLookupByLibrary.simpleMessage(
-            "अपने कोर्स प्राप्त करने के लिए कृपया लॉगिन करें।"),
+            "अपने प्रशिक्षण सत्र प्राप्त करने के लिए कृपया लॉगिन करें।"),
         "loginHeaderText": MessageLookupByLibrary.simpleMessage(
             "हमेशा अपने कौशल को बढ़ाएं।"),
         "loginWithPassword":
@@ -206,9 +206,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "minutes": MessageLookupByLibrary.simpleMessage("मिनट"),
         "more": MessageLookupByLibrary.simpleMessage("और"),
         "mostPopularCourse":
-            MessageLookupByLibrary.simpleMessage("सबसे लोकप्रिय कोर्स"),
-        "myCourses": MessageLookupByLibrary.simpleMessage("मेरे कोर्स"),
-        "myCoursesTab": MessageLookupByLibrary.simpleMessage("मेरे कोर्स"),
+            MessageLookupByLibrary.simpleMessage("सबसे लोकप्रिय प्रशिक्षण सत्र"),
+        "myCourses": MessageLookupByLibrary.simpleMessage("मेरे प्रशिक्षण सत्र"),
+        "myCoursesTab": MessageLookupByLibrary.simpleMessage("मेरे प्रशिक्षण सत्र"),
         "myProfile": MessageLookupByLibrary.simpleMessage("मेरी प्रोफ़ाइल"),
         "name": MessageLookupByLibrary.simpleMessage("नाम"),
         "needHelp": MessageLookupByLibrary.simpleMessage("मदद चाहिए?"),
@@ -220,7 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noCategoriesFound":
             MessageLookupByLibrary.simpleMessage("कोई श्रेणी नहीं मिली!"),
         "noCoursePurchased":
-            MessageLookupByLibrary.simpleMessage("कोई कोर्स नहीं खरीदा"),
+            MessageLookupByLibrary.simpleMessage("कोई प्रशिक्षण सत्र नहीं खरीदा"),
         "noDataFound":
             MessageLookupByLibrary.simpleMessage("कोई डेटा नहीं मिला"),
         "noInternetDes": MessageLookupByLibrary.simpleMessage(
@@ -262,7 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payableAmount": MessageLookupByLibrary.simpleMessage("देय राशि"),
         "payment": MessageLookupByLibrary.simpleMessage("भुगतान"),
         "paymentDes": MessageLookupByLibrary.simpleMessage(
-            "आपने अपना वांछित कोर्स प्राप्त किया है। अब आप कभी भी, कहीं भी अपना कौशल बढ़ा सकते हैं"),
+            "आपने अपना वांछित प्रशिक्षण सत्र प्राप्त किया है। अब आप कभी भी, कहीं भी अपना कौशल बढ़ा सकते हैं"),
         "paymentHistory":
             MessageLookupByLibrary.simpleMessage("भुगतान और इतिहास"),
         "paymentMethodDec": MessageLookupByLibrary.simpleMessage(
@@ -295,13 +295,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("प्रश्न प्रकार"),
         "quize": MessageLookupByLibrary.simpleMessage("क्विज़"),
         "rateDec": MessageLookupByLibrary.simpleMessage(
-            "इस कोर्स से जो आपने सीखा उसके बारे में लिखें और दूसरों को प्रेरित करें।"),
+            "इस प्रशिक्षण सत्र से जो आपने सीखा उसके बारे में लिखें और दूसरों को प्रेरित करें।"),
         "rateNow": MessageLookupByLibrary.simpleMessage("अभी रेट करें"),
         "rateQus":
-            MessageLookupByLibrary.simpleMessage("कोर्स कैसा था?"),
+            MessageLookupByLibrary.simpleMessage("प्रशिक्षण सत्र कैसा था?"),
         "rated": MessageLookupByLibrary.simpleMessage("रेटिंग"),
         "ratedThisCourse":
-            MessageLookupByLibrary.simpleMessage("इस कोर्स को रेट किया है।"),
+            MessageLookupByLibrary.simpleMessage("इस प्रशिक्षण सत्र को रेट किया है।"),
         "rating": MessageLookupByLibrary.simpleMessage("रेटिंग"),
         "recommendedProduct":
             MessageLookupByLibrary.simpleMessage("आपके लिए अनुशंसित"),
@@ -366,7 +366,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("कुल"),
         "totalMark": MessageLookupByLibrary.simpleMessage("कुल अंक"),
         "unlockCertificate": MessageLookupByLibrary.simpleMessage(
-            "आपका कोर्स पूरा हो गया है और आपका प्रमाणपत्र तैयार है।"),
+            "आपका प्रशिक्षण सत्र पूरा हो गया है और आपका प्रमाणपत्र तैयार है।"),
         "updateProfile":
             MessageLookupByLibrary.simpleMessage("प्रोफ़ाइल अपडेट करें"),
         "uploadFromGallery":
@@ -380,8 +380,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "video": MessageLookupByLibrary.simpleMessage("वीडियो"),
         "viewAll": MessageLookupByLibrary.simpleMessage("सभी देखें"),
         "viewAllCourses":
-            MessageLookupByLibrary.simpleMessage("सभी कोर्स देखें"),
-        "viewCourse": MessageLookupByLibrary.simpleMessage("कोर्स देखें"),
+            MessageLookupByLibrary.simpleMessage("सभी प्रशिक्षण सत्र देखें"),
+        "viewCourse": MessageLookupByLibrary.simpleMessage("प्रशिक्षण सत्र देखें"),
         "viewDetails": MessageLookupByLibrary.simpleMessage("विवरण देखें"),
         "week": MessageLookupByLibrary.simpleMessage("सप्ताह"),
         "weeks": MessageLookupByLibrary.simpleMessage("सप्ताह"),

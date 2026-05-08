@@ -18,6 +18,14 @@ class CourseController extends StateNotifier<Course> {
 
   CourseController(super.state, this.ref);
 
+  @override
+  void dispose() {
+    state.videoPlayerController?.pause();
+    state.videoPlayerController?.dispose();
+    state.chewieController?.dispose();
+    super.dispose();
+  }
+
   removeListData() {
     state.mostPopular.clear();
 

@@ -136,7 +136,7 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                   padding: EdgeInsets.only(right: 20.h),
                   constraints: BoxConstraints(maxHeight: 44.h),
                   child: CustomFormWidget(
-                    hint: "Search Courses...",
+                    hint: "Search Training Sessions...",
                     controller: searchController,
                     onChanged: (value) {
                       deBouncer.run(() {

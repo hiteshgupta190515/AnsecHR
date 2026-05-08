@@ -21,7 +21,41 @@ import flutter_local_notifications
       GeneratedPluginRegistrant.register(with: registry)
     }
     
+    // Prevent screen recording / screenshots
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(screenCaptureDidChange),
+      name: UIScreen.capturedDidChangeNotification,
+      object: nil
+    )
+    checkScreenCapture()
+    
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+  
+  @objc private func screenCaptureDidChange() {
+    checkScreenCapture()
+  }
+  
+  private func checkScreenCapture() {
+    if UIScreen.main.isCaptured {
+      showPrivacyOverlay()
+    } else {
+      hidePrivacyOverlay()
+    }
+  }
+  
+  private func showPrivacyOverlay() {
+    if self.window?.viewWithTag(999999) == nil {
+      let overlay = UIView(frame: UIScreen.main.bounds)
+      overlay.backgroundColor = UIColor.black
+      overlay.tag = 999999
+      self.window?.addSubview(overlay)
+    }
+  }
+  
+  private func hidePrivacyOverlay() {
+    self.window?.viewWithTag(999999)?.removeFromSuperview()
   }
 }
 
@@ -33,19 +67,3 @@ private func registerPlugins(registry: FlutterPluginRegistry) {
         )
     }
 }
-
-
-
-// import UIKit
-// import Flutter
-
-// @UIApplicationMain
-// @objc class AppDelegate: FlutterAppDelegate {
-//   override func application(
-//     _ application: UIApplication,
-//     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-//   ) -> Bool {
-//     GeneratedPluginRegistrant.register(with: self)
-//     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-//   }
-// }

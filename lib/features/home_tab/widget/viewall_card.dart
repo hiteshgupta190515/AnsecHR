@@ -24,11 +24,15 @@ class ViewAllCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: padding.h),
       child: Row(
         children: [
-          Text(
-            title,
-            style: AppTextStyle(context)
-                .bodyText
-                .copyWith(fontWeight: FontWeight.w700),
+          Flexible(
+            child: Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle(context)
+                  .bodyText
+                  .copyWith(fontWeight: FontWeight.w700),
+            ),
           ),
           const Spacer(),
           if (showViewAll)

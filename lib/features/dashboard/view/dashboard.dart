@@ -67,7 +67,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: Container(
+        bottomNavigationBar: SafeArea(
+          top: false,
+          child: Container(
           decoration: BoxDecoration(
             color: context.color.surface,
             boxShadow: [
@@ -105,6 +107,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             ],
           ),
         ),
+          ),
       ),
     );
   }
@@ -145,13 +148,17 @@ class BottomTab extends StatelessWidget {
                     : colors(context).hintTextColor,
               ),
               4.ph,
-              Text(
-                title,
-                style: AppTextStyle(context).bodyTextSmall.copyWith(
-                    fontSize: 10.sp,
-                    color: ref.watch(homeTabControllerProvider) == tabIndex
-                        ? colors(context).primaryColor
-                        : colors(context).hintTextColor),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  title,
+                  maxLines: 1,
+                  style: AppTextStyle(context).bodyTextSmall.copyWith(
+                      fontSize: 10.sp,
+                      color: ref.watch(homeTabControllerProvider) == tabIndex
+                          ? colors(context).primaryColor
+                          : colors(context).hintTextColor),
+                ),
               )
             ],
           ),

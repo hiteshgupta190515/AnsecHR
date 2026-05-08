@@ -28,7 +28,7 @@ class Data {
   Data({this.id, this.title, this.description, this.thumbnail});
 
   Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'] != null ? int.tryParse(json['id'].toString()) : null;
     title = json['title'];
     description = json['description'];
     thumbnail = json['thumbnail'];

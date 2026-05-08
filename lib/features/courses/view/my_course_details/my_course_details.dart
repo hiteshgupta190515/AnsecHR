@@ -50,55 +50,45 @@ class _MyCourseDetailsState extends ConsumerState<MyCourseDetails> {
   }
 
   Future<void> init() async {
-    ref
-        .read(myCourseDetailsController.notifier)
-        .getMyCourseDetails(widget.courseId);
+    // Delay slightly to allow page transition animation to complete smoothly
+    await Future.delayed(const Duration(milliseconds: 300));
+    if (mounted) {
+      ref
+          .read(myCourseDetailsController.notifier)
+          .getMyCourseDetails(widget.courseId);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     var model = ref.watch(myCourseDetailsController).courseDetails;
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (bool didPop) async {
-        if (didPop) return;
-        ref.read(myCourseDetailsController.notifier).disposeController();
-        context.nav.pop();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            model?.course.title ?? '',
-            maxLines: 1,
-          ),
-          leading: IconButton(
-              onPressed: () {
-                (ref.read(homeTabControllerProvider.notifier).state == 3) ? context.nav.pop() :
-                context.nav.pushNamedAndRemoveUntil(
-                    Routes.dashboard, (route) => false);
-                (ref.read(homeTabControllerProvider.notifier).state == 0)
-                    ? ref.read(homeTabControllerProvider.notifier).state = 0
-                    : ref.read(homeTabControllerProvider.notifier).state = 1;
-              },
-              icon: SvgPicture.asset(
-                'assets/svg/ic_arrow_left.svg',
-                width: 24.h,
-                height: 24.h,
-                color: context.color.onSurface,
-              )),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          model?.course.title ?? '',
+          maxLines: 1,
         ),
-        body: ref.watch(myCourseDetailsController).isLoading || model == null
-            ? const ShimmerWidget()
-            : Scaffold(
-                body: PopScope(
-                    onPopInvokedWithResult: (e, s) {
-                      ref
-                          .read(myCourseDetailsController.notifier)
-                          .disposeController();
-                    },
-                    child: const Body()),
-              ),
+        leading: IconButton(
+            onPressed: () {
+              (ref.read(homeTabControllerProvider.notifier).state == 3) ? context.nav.pop() :
+              context.nav.pushNamedAndRemoveUntil(
+                  Routes.dashboard, (route) => false);
+              (ref.read(homeTabControllerProvider.notifier).state == 0)
+                  ? ref.read(homeTabControllerProvider.notifier).state = 0
+                  : ref.read(homeTabControllerProvider.notifier).state = 1;
+            },
+            icon: SvgPicture.asset(
+              'assets/svg/ic_arrow_left.svg',
+              width: 24.h,
+              height: 24.h,
+              color: context.color.onSurface,
+            )),
       ),
+      body: ref.watch(myCourseDetailsController).isLoading || model == null
+          ? const ShimmerWidget()
+          : const Scaffold(
+              body: Body(),
+            ),
     );
   }
 }

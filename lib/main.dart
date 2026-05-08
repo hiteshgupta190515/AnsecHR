@@ -34,7 +34,12 @@ void main() async {
   await requestNotificationPermission();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   firebaseMessagingForgroundHandler(container);
-  print('FCM TOKEN: ${await FirebaseMessaging.instance.getToken()}');
+  try {
+    final token = await FirebaseMessaging.instance.getToken();
+    print('FCM TOKEN: $token');
+  } catch (e) {
+    print('FCM TOKEN ERROR: $e');
+  }
 
   await Hive.initFlutter();
   await Hive.openBox(AppHSC.authBox);

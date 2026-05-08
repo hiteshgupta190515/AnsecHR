@@ -23,6 +23,7 @@ import 'package:ready_lms/utils/entensions.dart';
 
 import 'widget/about_tab.dart';
 // import 'widget/lessons_tab.dart'; // hidden — Lessons tab removed
+import 'widget/assessments_tab.dart';
 import 'widget/reviews_tab.dart';
 
 class CourseNewScreen extends ConsumerStatefulWidget {
@@ -45,34 +46,22 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       init();
     });
-    _tabController = TabController(initialIndex: 0, length: 2, vsync: this);
+    _tabController = TabController(initialIndex: 0, length: 3, vsync: this);
   }
 
   Future<void> init() async {
-    ref.read(courseController.notifier).getNewCourseDetails(widget.courseId);
+    // Delay slightly to allow page transition animation to complete smoothly
+    await Future.delayed(const Duration(milliseconds: 300));
+    if (mounted) {
+      ref.read(courseController.notifier).getNewCourseDetails(widget.courseId);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     var model = ref.watch(courseController).courseDetails;
 
-    return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (bool didPop, result) async {
-        if (didPop) {
-          if (didPop) {
-            final videoPlayerController =
-                ref.read(courseController).videoPlayerController;
-
-            // Check if the controller is null or already disposed
-            if (videoPlayerController != null &&
-                videoPlayerController.value.isPlaying) {
-              videoPlayerController.pause();
-            }
-          }
-        }
-      },
-      child: Scaffold(
+    return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0),
           child: AppBar(
@@ -119,15 +108,6 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
                 ),
               ),
               onTap: () {
-                final videoPlayerController =
-                    ref.read(myCourseDetailsController).videoPlayerController;
-
-                // Check if the controller is null or already disposed
-                if (videoPlayerController != null &&
-                    videoPlayerController.value.isPlaying) {
-                  videoPlayerController.pause();
-                }
-
                 context.nav.pop();
               },
             ),
@@ -135,7 +115,7 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
               child: ref.watch(courseController).isLoading || model == null
                   ? const ShimmerWidget()
                   : DefaultTabController(
-                      length: 2,
+                      length: 3,
                       child: NestedScrollView(
                         headerSliverBuilder: (context, value) {
                           return [
@@ -171,6 +151,13 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
                                       // ),
                                       Tab(
                                         child: Text(
+                                          'Assessments',
+                                          style: AppTextStyle(context)
+                                              .bodyTextSmall,
+                                        ),
+                                      ),
+                                      Tab(
+                                        child: Text(
                                           S.of(context).reviews,
                                           style: AppTextStyle(context)
                                               .bodyTextSmall,
@@ -188,6 +175,7 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
                           children: [
                             const AboutTab(),
                             // const LessonsTab(), // hidden
+                            AssessmentsTab(model: model),
                             ReviewsTab(model: model)
                           ],
                         ),
@@ -255,7 +243,6 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
                   ],
                 ),
               ),
-      ),
     );
   }
 }

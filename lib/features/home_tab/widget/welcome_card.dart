@@ -64,6 +64,8 @@ class WelcomeCard extends StatelessWidget {
                             }
                             return Text(
                               "${S.of(context).hi} $name 👋",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: AppTextStyle(context).bodyText.copyWith(
                                     color:
                                         Theme.of(context).colorScheme.surface,
@@ -73,6 +75,8 @@ class WelcomeCard extends StatelessWidget {
                       5.ph,
                       Text(
                         S.of(context).welcomeText,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTextStyle(context).bodyText.copyWith(
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).colorScheme.surface,
@@ -81,12 +85,16 @@ class WelcomeCard extends StatelessWidget {
                       24.ph,
                       Row(
                         children: [
-                          Text(
-                            ' ${totalCourse - 1}+ ${S.of(context).course}',
-                            style: AppTextStyle(context).bodyText.copyWith(
-                                  fontSize: 12.sp,
-                                  color: const Color(0xFFEEDDFE),
-                                ),
+                          Flexible(
+                            child: Text(
+                              ' ${totalCourse - 1}+ ${S.of(context).course}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyle(context).bodyText.copyWith(
+                                    fontSize: 12.sp,
+                                    color: const Color(0xFFEEDDFE),
+                                  ),
+                            ),
                           ),
                           const Spacer(),
                           GestureDetector(

@@ -17,7 +17,7 @@ class User {
       this.isAdmin});
 
   User.fromMap(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'] != null ? int.tryParse(json['id'].toString()) : null;
     phone = json['phone'];
     email = json['email'];
     name = json['name'];

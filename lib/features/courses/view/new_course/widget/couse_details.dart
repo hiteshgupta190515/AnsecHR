@@ -91,9 +91,62 @@ class _CourseDetailsState extends State<CourseDetails> {
                             .toStringAsFixed(1)
                             .toString(),
                     totalRating: '(${widget.model.course.reviewCount})'),
-                // hidden: video/lifetime/audio/notes chips
-                // 16.ph,
-                // SingleChildScrollView(Row([video, lifetime, audio, notes]))
+                16.ph,
+                // Instructor Info
+                Row(
+                  children: [
+                    Container(
+                      width: 44.h,
+                      height: 44.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: colors(context).hintTextColor!.withOpacity(.2),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(22.h),
+                        child: widget.model.course.instructor.profilePicture.isNotEmpty
+                            ? FadeInImage.assetNetwork(
+                                placeholder: 'assets/images/spinner.gif',
+                                image: widget.model.course.instructor.profilePicture,
+                                fit: BoxFit.cover,
+                                imageErrorBuilder: (context, error, stackTrace) =>
+                                    Icon(Icons.person, color: colors(context).hintTextColor),
+                              )
+                            : Icon(Icons.person, color: colors(context).hintTextColor),
+                      ),
+                    ),
+                    12.pw,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.model.course.instructor.name.isNotEmpty
+                                ? widget.model.course.instructor.name
+                                : 'Instructor',
+                            style: AppTextStyle(context).bodyText.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.sp,
+                                ),
+                          ),
+                          if (widget.model.course.instructor.title.isNotEmpty) ...[
+                            2.ph,
+                            Text(
+                              widget.model.course.instructor.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyle(context).bodyTextSmall.copyWith(
+                                    fontSize: 12.sp,
+                                    color: colors(context).hintTextColor,
+                                  ),
+                            ),
+                          ]
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                8.ph,
               ],
             ),
           )

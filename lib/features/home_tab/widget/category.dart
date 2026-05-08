@@ -23,7 +23,7 @@ class Category extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 12.w,
           mainAxisSpacing: 12.h,
-          childAspectRatio: 2.2,
+          childAspectRatio: 1.2,
         ),
         itemCount: categoryList.length,
         itemBuilder: (context, index) {

@@ -48,7 +48,9 @@ class _HomeState extends ConsumerState<HomeTab> {
         .getCategories(query: {'is_featured': true}).then(
       (value) {
         if (value.isSuccess) {
-          categoryList.addAll(value.response);
+          setState(() {
+            categoryList.addAll(value.response);
+          });
         }
       },
     );

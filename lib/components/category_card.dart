@@ -40,49 +40,57 @@ class CategoryCard extends StatelessWidget {
           borderRadius: AppComponents.defaultBorderRadiusLarge,
           color: color.withOpacity(.6),
         ),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Category icon
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.r),
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/images/spinner.gif',
-                image: image,
-                height: 40.h,
-                width: 40.h,
-                fit: BoxFit.cover,
-                imageErrorBuilder: (context, error, stackTrace) =>
-                    Icon(Icons.category, color: AppStaticColor.whiteColor, size: 32.h),
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppStaticColor.whiteColor.withOpacity(0.2),
+              ),
+              padding: EdgeInsets.all(6.r),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.r),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/spinner.gif',
+                  image: image,
+                  height: 44.h,
+                  width: 44.h,
+                  fit: BoxFit.cover,
+                  imageErrorBuilder: (context, error, stackTrace) =>
+                      Icon(Icons.category, color: AppStaticColor.whiteColor, size: 36.h),
+                ),
               ),
             ),
-            10.pw,
+            12.ph,
             // Title + course count
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyle(context).bodyTextSmall.copyWith(
-                          fontSize: 12.sp,
-                          color: AppStaticColor.whiteColor,
-                          fontWeight: FontWeight.w600,
-                          height: 1.3,
-                        ),
-                  ),
-                  4.ph,
-                  Text(
-                    '$totalCourse ${S.of(context).course}',
-                    style: AppTextStyle(context).bodyTextSmall.copyWith(
-                          color: AppStaticColor.whiteColor.withOpacity(.85),
-                          fontSize: 10.sp,
-                        ),
-                  ),
-                ],
+            Flexible(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle(context).bodyTextSmall.copyWith(
+                      fontSize: 14.sp,
+                      color: AppStaticColor.whiteColor,
+                      fontWeight: FontWeight.w600,
+                      height: 1.2,
+                    ),
+              ),
+            ),
+            4.ph,
+            Flexible(
+              child: Text(
+                '$totalCourse ${S.of(context).course}',
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle(context).bodyTextSmall.copyWith(
+                      color: AppStaticColor.whiteColor.withOpacity(.9),
+                      fontSize: 11.sp,
+                    ),
               ),
             ),
           ],
