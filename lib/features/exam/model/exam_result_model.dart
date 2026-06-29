@@ -17,13 +17,13 @@ class ExamResultModel {
   late final bool submitted;
 
   ExamResultModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    startTime = json['start_time'];
-    endTime = json['end_time'];
-    totalMark = json['total_mark'];
-    passMark = json['pass_mark'];
-    obtainedMark = json['obtained_mark'];
-    submitted = json['submitted'];
+    id = int.tryParse(json['id'].toString()) ?? 0;
+    startTime = json['start_time'] ?? '';
+    endTime = json['end_time'] ?? '';
+    totalMark = int.tryParse(json['total_mark'].toString()) ?? 0;
+    passMark = int.tryParse(json['pass_mark'].toString()) ?? 0;
+    obtainedMark = int.tryParse(json['obtained_mark'].toString()) ?? 0;
+    submitted = json['submitted'] == true;
   }
 
   Map<String, dynamic> toJson() {

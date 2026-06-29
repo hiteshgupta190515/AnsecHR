@@ -8,11 +8,13 @@ class PinPutWidget extends StatefulWidget {
   final void Function(String)? onCompleted;
   final String? Function(String?)? validator;
   final TextEditingController pinCodeController;
+  final int length;
   const PinPutWidget({
     super.key,
     required this.onCompleted,
     required this.validator,
     required this.pinCodeController,
+    this.length = 4,
   });
 
   @override
@@ -35,7 +37,7 @@ class _PinputExampleState extends State<PinPutWidget> {
 
   @override
   void dispose() {
-    widget.pinCodeController.dispose();
+    // Do NOT dispose pinCodeController here — it is owned by the parent widget.
     focusNode.dispose();
     super.dispose();
   }
@@ -66,6 +68,7 @@ class _PinputExampleState extends State<PinPutWidget> {
           Directionality(
             textDirection: TextDirection.ltr,
             child: Pinput(
+              length: widget.length,
               preFilledWidget: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

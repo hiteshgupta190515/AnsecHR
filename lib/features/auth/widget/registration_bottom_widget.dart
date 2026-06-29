@@ -19,7 +19,7 @@ import '../../other/controller/others.dart';
 import '../../other/other_secreen.dart';
 import '../controller/auth.dart';
 import 'login_bottom_widget.dart';
-import 'otp_bottom_widget.dart';
+import 'phone_login_otp_widget.dart';
 
 class RegistrationBottomWidget extends StatefulWidget {
   const RegistrationBottomWidget({
@@ -264,12 +264,25 @@ class _RegistrationBottomWidgetState extends State<RegistrationBottomWidget> {
                                               confirmPassword:
                                                   newPassController.text));
                                       if (res.isSuccess) {
+                                        // Send signup OTP via SMS
+                                        final phone = mobileController.text.trim();
+                                        final otpRes = await ref
+                                            .read(authController.notifier)
+                                            .sendLoginOtp(
+                                              phone: phone,
+                                              templateSlug: 'signup_otp',
+                                            );
+                                        if (!context.mounted) return;
                                         context.nav.pop();
-                                        ApGlobalFunctions.showBottomSheet(
+                                        if (otpRes.isSuccess) {
+                                          ApGlobalFunctions.showBottomSheet(
                                             context: context,
-                                            widget: OTPBottomWidget(
-                                              senderText: emailController.text,
-                                            ));
+                                            widget: PhoneLoginOtpWidget(
+                                                phone: phone),
+                                          );
+                                        } else {
+                                          EasyLoading.showError(otpRes.message);
+                                        }
                                       } else {
                                         EasyLoading.showError(res.message);
                                       }

@@ -25,13 +25,16 @@ class ViewAllCard extends StatelessWidget {
       child: Row(
         children: [
           Flexible(
-            child: Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: AppTextStyle(context)
-                  .bodyText
-                  .copyWith(fontWeight: FontWeight.w700),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                title,
+                maxLines: 1,
+                style: AppTextStyle(context)
+                    .bodyText
+                    .copyWith(fontWeight: FontWeight.w700),
+              ),
             ),
           ),
           const Spacer(),

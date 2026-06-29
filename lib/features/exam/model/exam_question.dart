@@ -33,10 +33,10 @@ class ExamSession {
   late final int obtainedMark;
 
   ExamSession.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    totalMark = json['total_mark'];
-    passMark = json['pass_mark'];
-    obtainedMark = json['obtained_mark'];
+    id = int.tryParse(json['id'].toString()) ?? 0;
+    totalMark = int.tryParse(json['total_mark'].toString()) ?? 0;
+    passMark = int.tryParse(json['pass_mark'].toString()) ?? 0;
+    obtainedMark = int.tryParse(json['obtained_mark'].toString()) ?? 0;
   }
 
   Map<String, dynamic> toJson() {

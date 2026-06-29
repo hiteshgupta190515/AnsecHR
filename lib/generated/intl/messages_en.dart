@@ -94,7 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteConfirmation": MessageLookupByLibrary.simpleMessage(
             "Are you sure want to delete your account?"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
-        "details": MessageLookupByLibrary.simpleMessage("Details"),
+        "details": MessageLookupByLibrary.simpleMessage("Open"),
         "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),

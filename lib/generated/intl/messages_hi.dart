@@ -106,7 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteConfirmation": MessageLookupByLibrary.simpleMessage(
             "क्या आप वाकई अपना खाता हटाना चाहते हैं?"),
         "description": MessageLookupByLibrary.simpleMessage("विवरण"),
-        "details": MessageLookupByLibrary.simpleMessage("विवरण"),
+        "details": MessageLookupByLibrary.simpleMessage("खोलें"),
         "discount": MessageLookupByLibrary.simpleMessage("छूट"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("खाता नहीं है?"),

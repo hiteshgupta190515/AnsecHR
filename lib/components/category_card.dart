@@ -35,7 +35,7 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         width: width,   // null → fills the grid cell
         height: height, // null → fills the grid cell
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+        padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(
           borderRadius: AppComponents.defaultBorderRadiusLarge,
           color: color.withOpacity(.6),
@@ -43,28 +43,35 @@ class CategoryCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // Category icon
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppStaticColor.whiteColor.withOpacity(0.2),
-              ),
-              padding: EdgeInsets.all(6.r),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.r),
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/spinner.gif',
-                  image: image,
-                  height: 44.h,
-                  width: 44.h,
-                  fit: BoxFit.cover,
-                  imageErrorBuilder: (context, error, stackTrace) =>
-                      Icon(Icons.category, color: AppStaticColor.whiteColor, size: 36.h),
+            // Category icon — wrapped in Flexible + FittedBox so it shrinks
+            // gracefully when the grid cell is short.
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppStaticColor.whiteColor.withOpacity(0.2),
+                  ),
+                  padding: const EdgeInsets.all(6),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: 'assets/images/spinner.gif',
+                      image: image,
+                      height: 44,
+                      width: 44,
+                      fit: BoxFit.cover,
+                      imageErrorBuilder: (context, error, stackTrace) =>
+                          const Icon(Icons.category, color: AppStaticColor.whiteColor, size: 36),
+                    ),
+                  ),
                 ),
               ),
             ),
-            12.ph,
+            6.ph,
             // Title + course count
             Flexible(
               child: Text(
@@ -73,14 +80,14 @@ class CategoryCard extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyle(context).bodyTextSmall.copyWith(
-                      fontSize: 14.sp,
+                      fontSize: 13.sp,
                       color: AppStaticColor.whiteColor,
                       fontWeight: FontWeight.w600,
                       height: 1.2,
                     ),
               ),
             ),
-            4.ph,
+            2.ph,
             Flexible(
               child: Text(
                 '$totalCourse ${S.of(context).course}',

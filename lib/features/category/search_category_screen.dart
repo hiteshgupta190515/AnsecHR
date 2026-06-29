@@ -131,15 +131,15 @@ class _SearchScreenViewState extends ConsumerState<CategorySearchScreen> {
                         child: Container(
                           color: context.color.surface,
                           child: GridView.builder(
-                            padding: EdgeInsets.all(20.h),
+                            padding: EdgeInsets.all(16.w),
                             shrinkWrap: true,
                             itemCount: categoryList.length,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisSpacing: 4.h,
-                                    mainAxisSpacing: 12.h,
+                                    crossAxisSpacing: 12.w,
+                                    mainAxisSpacing: 12.w,
                                     crossAxisCount: 2,
-                                    childAspectRatio: 1.13.h),
+                                    childAspectRatio: 1.3),
                             itemBuilder: (context, index) => CategoryCard(
                               image: categoryList[index].image ??
                                   AppConstants.defaultAvatarImageUrl,

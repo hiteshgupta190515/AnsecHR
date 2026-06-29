@@ -470,10 +470,10 @@ class S {
     );
   }
 
-  /// `Details`
+  /// `Open`
   String get details {
     return Intl.message(
-      'Details',
+      'Open',
       name: 'details',
       desc: '',
       args: [],

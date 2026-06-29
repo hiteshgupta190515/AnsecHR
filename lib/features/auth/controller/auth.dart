@@ -242,6 +242,61 @@ class AuthController extends StateNotifier<bool> {
     }
   }
 
+  Future<CommonResponse> sendLoginOtp(
+      {required String phone, String templateSlug = 'login_otp'}) async {
+    state = true;
+    bool isSuccess = false;
+    try {
+      final response = await ref
+          .read(authServiceProvider)
+          .sendLoginOtp(phone: phone, templateSlug: templateSlug);
+      state = false;
+      isSuccess = response.statusCode == 200;
+      return CommonResponse(
+        isSuccess: isSuccess,
+        message: response.data['message'],
+      );
+    } catch (error) {
+      debugPrint(error.toString());
+      state = false;
+      return CommonResponse(isSuccess: false, message: error.toString());
+    } finally {
+      state = false;
+    }
+  }
+
+  Future<CommonResponse> verifyLoginOtp(
+      {required String phone, required String otp}) async {
+    state = true;
+    bool isSuccess = false;
+    try {
+      final response = await ref
+          .read(authServiceProvider)
+          .verifyLoginOtp(phone: phone, otp: otp);
+      state = false;
+      if (response.statusCode == 200) {
+        isSuccess = true;
+        final userInfo = User.fromMap(response.data['data']['user']);
+        final authToken = response.data['data']['token'];
+        ref
+            .read(hiveStorageProvider)
+            .saveUserInfo(userInfo: userInfo, isGuest: false);
+        ref.read(hiveStorageProvider).saveUserAuthToken(authToken: authToken);
+        ref.read(apiClientProvider).updateToken(token: authToken);
+      }
+      return CommonResponse(
+        isSuccess: isSuccess,
+        message: response.data['message'],
+      );
+    } catch (error) {
+      debugPrint(error.toString());
+      state = false;
+      return CommonResponse(isSuccess: false, message: error.toString());
+    } finally {
+      state = false;
+    }
+  }
+
   Future<CommonResponse> activeAccountRequest() async {
     state = true;
     bool isSuccess = false;

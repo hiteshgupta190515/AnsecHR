@@ -186,61 +186,65 @@ class _CourseNewViewState extends ConsumerState<CourseNewScreen>
         ),
         bottomNavigationBar: !widget.isShowBottomNavigationBar
             ? null
-            : Container(
-                width: double.infinity,
-                color: context.color.surface,
-                padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 16.h),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: [
-                        // price/free text hidden
-                        // Column(children: [price, regularPrice])
-                        // const Spacer(),
-                        ref.watch(freeCourseEnrollController)
-                            ? const CircularProgressIndicator()
-                            : AppButton(
-                                title: S.of(context).enrolNow,
-                                titleColor: context.color.surface,
-                                textPaddingHorizontal: 16.h,
-                                textPaddingVertical: 12.h,
-                                onTap: () {
-                                  if (model != null) {
-                                    ref
-                                        .read(courseController)
-                                        .videoPlayerController
-                                        ?.pause();
-                                    if (model.course.isFree == true) {
-                                      ref
-                                          .read(freeCourseEnrollController
-                                              .notifier)
-                                          .freeCourseEnroll(
-                                              courseId: model.course.id)
-                                          .then((response) {
-                                        if (response.isSuccess) {
-                                          courseEnrollSuccessDialog(
-                                            context: context,
-                                            ref: ref,
-                                          );
-                                        }
-                                      });
-                                    } else {
+            : SafeArea(
+                top: false,
+                child: Container(
+                  width: double.infinity,
+                  color: context.color.surface,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.h, vertical: 16.h),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          // price/free text hidden
+                          // Column(children: [price, regularPrice])
+                          // const Spacer(),
+                          ref.watch(freeCourseEnrollController)
+                              ? const CircularProgressIndicator()
+                              : AppButton(
+                                  title: S.of(context).enrolNow,
+                                  titleColor: context.color.surface,
+                                  textPaddingHorizontal: 16.h,
+                                  textPaddingVertical: 12.h,
+                                  onTap: () {
+                                    if (model != null) {
                                       ref
                                           .read(courseController)
                                           .videoPlayerController
                                           ?.pause();
+                                      if (model.course.isFree == true) {
+                                        ref
+                                            .read(freeCourseEnrollController
+                                                .notifier)
+                                            .freeCourseEnroll(
+                                                courseId: model.course.id)
+                                            .then((response) {
+                                          if (response.isSuccess) {
+                                            courseEnrollSuccessDialog(
+                                              context: context,
+                                              ref: ref,
+                                            );
+                                          }
+                                        });
+                                      } else {
+                                        ref
+                                            .read(courseController)
+                                            .videoPlayerController
+                                            ?.pause();
 
-                                      context.nav.pushNamed(
-                                          Routes.checkOutScreen,
-                                          arguments: widget.courseId);
+                                        context.nav.pushNamed(
+                                            Routes.checkOutScreen,
+                                            arguments: widget.courseId);
+                                      }
                                     }
-                                  }
-                                },
-                              )
-                      ],
-                    ),
-                  ],
+                                  },
+                                )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
     );

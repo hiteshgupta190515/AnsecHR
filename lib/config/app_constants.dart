@@ -1,10 +1,12 @@
 class AppConstants {
   // API URL
-  static const String baseUrl = 'https://lms.ansechr.com/api';
+  static const String baseUrl = 'http://lms.ansechr.com/api';
 
 
   static const String register = '$baseUrl/register';
   static const String loginUrl = '$baseUrl/login';
+  static const String sendLoginOtp = '$baseUrl/login/send-otp';
+  static const String verifyLoginOtp = '$baseUrl/login/verify-otp';
   static const String activateAccount = '$baseUrl/account-activation/activate';
   static const String updatePass = '$baseUrl/update-password';
   static const String resetPassword = '$baseUrl/reset-password';

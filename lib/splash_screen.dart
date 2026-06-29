@@ -33,15 +33,18 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
             if (!mounted) return;
             final appSettingsBox = Hive.box(AppHSC.appSettingsBox);
             appSettingsBox.put(AppHSC.path, "dashboard");
-            var firstOpen = appSettingsBox.get(AppHSC.firstOpen, defaultValue: true);
             if (!ref.read(othersController)) {
               if (ref.read(othersController.notifier).masterModel != null) {
-                if (!ref.read(hiveStorageProvider).isGuest()) {
+                final isLoggedIn = !ref.read(hiveStorageProvider).isGuest() &&
+                    ref.read(hiveStorageProvider).getAuthToken() != null;
+
+                if (isLoggedIn) {
                   ref.read(apiClientProvider).updateToken(
                       token: ref.read(hiveStorageProvider).getAuthToken()!);
                 }
+
                 context.nav.pushNamedAndRemoveUntil(
-                    firstOpen ? Routes.authHomeScreen : Routes.dashboard,
+                    isLoggedIn ? Routes.dashboard : Routes.authHomeScreen,
                     (route) => false);
               }
             }

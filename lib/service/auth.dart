@@ -110,6 +110,34 @@ class AuthService extends Auth {
         );
     return response;
   }
+
+  @override
+  Future<Response> sendLoginOtp(
+      {required String phone, String templateSlug = 'login_otp'}) async {
+    final response = await ref.read(apiClientProvider).post(
+      AppConstants.sendLoginOtp,
+      data: {'phone': phone, 'template': templateSlug},
+    );
+    return response;
+  }
+
+  @override
+  Future<Response> verifyLoginOtp(
+      {required String phone, required String otp}) async {
+    final String? fcmToken = Platform.isIOS
+        ? await FirebaseMessaging.instance.getAPNSToken()
+        : await FirebaseMessaging.instance.getToken();
+    final response = await ref.read(apiClientProvider).post(
+      AppConstants.verifyLoginOtp,
+      data: {
+        'phone': phone,
+        'otp': otp,
+        'fcm_token': fcmToken,
+        'guest_id': ref.read(hiveStorageProvider).guestId(),
+      },
+    );
+    return response;
+  }
 }
 
 final authServiceProvider = Provider((ref) => AuthService(ref));

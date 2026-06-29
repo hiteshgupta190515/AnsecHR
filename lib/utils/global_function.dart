@@ -54,7 +54,11 @@ class ApGlobalFunctions {
 
   static cAppBar({bool showLogo = false, required Widget header}) {
     return AppBar(
-      title: header,
+      title: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: header,
+      ),
       actions: [
         ValueListenableBuilder(
             valueListenable: Hive.box(AppHSC.userBox).listenable(),

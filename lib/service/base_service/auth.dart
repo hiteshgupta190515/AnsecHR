@@ -17,5 +17,9 @@ abstract class Auth {
   Future<Response> resetPassword({required String pass});
   Future<Response> updatePassword(
       {required String oldPass, required String newPass});
+
+  Future<Response> sendLoginOtp(
+      {required String phone, String templateSlug = 'login_otp'});
+  Future<Response> verifyLoginOtp({required String phone, required String otp});
   // Future<Response> settings();
 }
