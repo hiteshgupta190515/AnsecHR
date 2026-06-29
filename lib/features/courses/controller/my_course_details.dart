@@ -39,7 +39,8 @@ class MyCourseDetailsController extends StateNotifier<MyCourse> {
                 looping: false,
                 showControls: true,
                 showOptions: false,
-                allowPlaybackSpeedChanging: false),
+                allowPlaybackSpeedChanging: false,
+                allowedScreenSleep: false),
             videoLoading: false);
       }
     } catch (error) {

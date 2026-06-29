@@ -56,7 +56,8 @@ class CourseController extends StateNotifier<Course> {
               looping: false,
               showControls: true,
               showOptions: false,
-              allowPlaybackSpeedChanging: false));
+              allowPlaybackSpeedChanging: false,
+              allowedScreenSleep: false));
     } catch (error) {
       state.videoLoading = false;
     } finally {

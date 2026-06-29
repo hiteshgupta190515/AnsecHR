@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ready_lms/config/app_color.dart';
 import 'package:ready_lms/config/app_text_style.dart';
 import 'package:ready_lms/config/theme.dart';
+import 'package:ready_lms/utils/global_function.dart';
 
 import '../../../generated/l10n.dart';
 
@@ -26,6 +27,8 @@ class SubmitButton extends StatefulWidget {
 class SubmitButtonState extends State<SubmitButton> {
   final ValueNotifier<double> progressNotifier = ValueNotifier(0.0);
   Timer? _timer;
+  bool _isCompleted = false;
+
   @override
   void initState() {
     super.initState();
@@ -35,12 +38,25 @@ class SubmitButtonState extends State<SubmitButton> {
   }
 
   void _startProgress() {
+    _isCompleted = false;
     _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
       if (progressNotifier.value < 1.0) {
         progressNotifier.value += 0.01;
+        if (progressNotifier.value >= 1.0) {
+          progressNotifier.value = 1.0;
+          _stopProgress();
+          if (!_isCompleted) {
+            _isCompleted = true;
+            widget.isComplete(true);
+          }
+        }
       } else {
         progressNotifier.value = 1.0; // Ensure the final value is 100%
         _stopProgress();
+        if (!_isCompleted) {
+          _isCompleted = true;
+          widget.isComplete(true);
+        }
       }
     });
   }
@@ -76,15 +92,10 @@ class SubmitButtonState extends State<SubmitButton> {
         TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 0.0, end: progressNotifier.value),
           duration: const Duration(milliseconds: 500),
-          onEnd: () {
-            if (progressNotifier.value == 1.0) {
-              widget.isComplete(true);
-            }
-          },
           builder: (context, value, child) {
             return SizedBox(
-              width: 110,
-              height: 110,
+              width: 110.w,
+              height: 110.h,
               child: CircularProgressIndicator(
                 value: value,
                 strokeWidth: 7.0,
@@ -95,8 +106,20 @@ class SubmitButtonState extends State<SubmitButton> {
           },
         ),
         GestureDetector(
+          onTap: () {
+            ApGlobalFunctions.showCustomSnackbar(
+              message: S.of(context).onceconfidenttapandoldSubmitbuttonbellow,
+              isSuccess: false,
+            );
+          },
           onLongPressStart: (details) => _startProgress(),
           onLongPressEnd: (details) {
+            if (progressNotifier.value < 1.0) {
+              progressNotifier.value = 0.0;
+            }
+            _stopProgress();
+          },
+          onLongPressCancel: () {
             if (progressNotifier.value < 1.0) {
               progressNotifier.value = 0.0;
             }

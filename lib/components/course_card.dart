@@ -38,8 +38,9 @@ class CourseCard extends StatelessWidget {
   final bool showRating;
   @override
   Widget build(BuildContext context) {
+    final bool isNarrow = width.isInfinite || width < 200;
     return Container(
-      width: width.w,
+      width: width.isInfinite ? double.infinity : width.w,
       margin: EdgeInsets.only(right: marginRight.h, bottom: marginBottom.h),
       decoration: BoxDecoration(
           borderRadius: AppComponents.defaultBorderRadiusSmall,
@@ -48,16 +49,18 @@ class CourseCard extends StatelessWidget {
         borderRadius: AppComponents.defaultBorderRadiusSmall,
         child: Column(
           children: [
-            FadeInImage.assetNetwork(
-              placeholderFit: BoxFit.contain,
-              placeholder: 'assets/images/spinner.gif',
-              image: model.thumbnail,
-              width: width.w,
-              height: (width * 0.6).w,
-              fit: BoxFit.cover,
-              imageErrorBuilder: (context, error, stackTrace) {
-                return Icon(Icons.error, color: context.color.primary);
-              },
+            AspectRatio(
+              aspectRatio: 1.6,
+              child: FadeInImage.assetNetwork(
+                placeholderFit: BoxFit.contain,
+                placeholder: 'assets/images/spinner.gif',
+                image: model.thumbnail,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Icon(Icons.error, color: context.color.primary);
+                },
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(8.h),
@@ -81,6 +84,7 @@ class CourseCard extends StatelessWidget {
                   if (showMeta) ...[
                     8.ph,
                     CourseShortsInfo(
+                      showEnrolled: !isNarrow,
                       totalTime: ApGlobalFunctions.convertMinutesToHours(
                           model.totalDuration, context),
                       totalEnrolled: '${model.studentCount}',
@@ -90,47 +94,84 @@ class CourseCard extends StatelessWidget {
                       totalRating: '(${model.reviewCount})',
                     ),
                     12.ph,
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              model.isFree == true
-                                  ? S.of(context).free
-                                  : model.price != null
-                                      ? "${AppConstants.currencySymbol}${model.price}"
-                                      : "${AppConstants.currencySymbol}${model.price ?? model.regularPrice}",
-                              style: AppTextStyle(context).subTitle,
-                            ),
-                            4.pw,
-                            model.price != null || model.isFree == true
-                                ? model.regularPrice != null
-                                    ? Text(
-                                        '${AppConstants.currencySymbol}${model.regularPrice}',
-                                        style: AppTextStyle(context)
-                                            .buttonText
-                                            .copyWith(
-                                              color:
-                                                  colors(context).hintTextColor,
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              decorationColor:
-                                                  colors(context).hintTextColor,
-                                            ),
-                                      )
-                                    : const SizedBox()
-                                : const SizedBox(),
-                          ],
-                        ),
-                        const Spacer(),
-                        AppButton(
-                          title: S.of(context).details,
-                          titleColor: context.color.surface,
-                          onTap: onTap,
-                        ),
-                      ],
-                    ),
+                    isNarrow
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                model.isFree == true
+                                    ? S.of(context).free
+                                    : model.price != null
+                                        ? "${AppConstants.currencySymbol}${model.price}"
+                                        : "${AppConstants.currencySymbol}${model.price ?? model.regularPrice}",
+                                style: AppTextStyle(context).subTitle,
+                              ),
+                              if (model.price != null || model.isFree == true)
+                                if (model.regularPrice != null) ...[
+                                  4.ph,
+                                  Text(
+                                    '${AppConstants.currencySymbol}${model.regularPrice}',
+                                    style: AppTextStyle(context)
+                                        .buttonText
+                                        .copyWith(
+                                          color: colors(context).hintTextColor,
+                                          decoration: TextDecoration.lineThrough,
+                                          decorationColor: colors(context).hintTextColor,
+                                        ),
+                                  ),
+                                ],
+                              8.ph,
+                              SizedBox(
+                                width: double.infinity,
+                                child: AppButton(
+                                  title: S.of(context).details,
+                                  titleColor: context.color.surface,
+                                  onTap: onTap,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    model.isFree == true
+                                        ? S.of(context).free
+                                        : model.price != null
+                                            ? "${AppConstants.currencySymbol}${model.price}"
+                                            : "${AppConstants.currencySymbol}${model.price ?? model.regularPrice}",
+                                    style: AppTextStyle(context).subTitle,
+                                  ),
+                                  4.pw,
+                                  model.price != null || model.isFree == true
+                                      ? model.regularPrice != null
+                                          ? Text(
+                                              '${AppConstants.currencySymbol}${model.regularPrice}',
+                                              style: AppTextStyle(context)
+                                                  .buttonText
+                                                  .copyWith(
+                                                    color:
+                                                        colors(context).hintTextColor,
+                                                    decoration:
+                                                        TextDecoration.lineThrough,
+                                                    decorationColor:
+                                                        colors(context).hintTextColor,
+                                                  ),
+                                            )
+                                          : const SizedBox()
+                                      : const SizedBox(),
+                                ],
+                              ),
+                              const Spacer(),
+                              AppButton(
+                                title: S.of(context).details,
+                                titleColor: context.color.surface,
+                                onTap: onTap,
+                              ),
+                            ],
+                          ),
                   ] else ...[
                     8.ph,
                     // Show duration — hide enrolled count & price

@@ -28,19 +28,22 @@ class CourseSearchScreen extends ConsumerStatefulWidget {
       _SearchScreenViewState();
 }
 
+final searchCourseControllerProvider = StateNotifierProvider.autoDispose<CourseController, Course>(
+    (ref) => CourseController(Course(courseList: [], mostPopular: []), ref));
+
+final isDropDownShowProvider = StateProvider.autoDispose<bool>((ref) {
+  return true;
+});
+
 class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
-  final courseController = StateNotifierProvider<CourseController, Course>(
-      (ref) => CourseController(Course(courseList: [], mostPopular: []), ref));
   ScrollController scrollController = ScrollController();
   String searchText = '';
 
   bool hasMoreData = true;
   int currentPage = 1;
+  bool _isPaginationLoading = false;
   final deBouncer = DeBouncer(milliseconds: 1000);
   final TextEditingController searchController = TextEditingController();
-  final isDropDownShow = StateProvider<bool>((ref) {
-    return true;
-  });
 
   List<CategoryModel> categoryList = [];
   CategoryModel? selectedCategory;
@@ -56,19 +59,23 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
     });
 
     scrollController.addListener(() {
-      if (scrollController.position.maxScrollExtent ==
-          scrollController.position.pixels) {
+      if (scrollController.hasClients &&
+          scrollController.position.pixels > 0 &&
+          scrollController.position.maxScrollExtent ==
+              scrollController.position.pixels) {
         if (hasMoreData) loadData();
       }
     });
   }
 
   Future<void> loadData({bool isRefresh = false}) async {
+    if (_isPaginationLoading && !isRefresh) return;
     if (isRefresh) {
       currentPage = 1;
       hasMoreData = true;
     }
-    ref.read(courseController.notifier).getAllCourse(
+    _isPaginationLoading = true;
+    ref.read(searchCourseControllerProvider.notifier).getAllCourse(
         isRefresh: isRefresh,
         currentPage: currentPage,
         makeSortOrFiler: false,
@@ -76,9 +83,10 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
           'search': searchText,
           if (selectedCategory?.title != 'All' && selectedCategory?.id != null) 'category_id': selectedCategory!.id
         }).then((value) {
+      _isPaginationLoading = false;
       if (value.isSuccess) {
-        if (ref.read(isDropDownShow)) {
-          ref.read(isDropDownShow.notifier).state = false;
+        if (ref.read(isDropDownShowProvider)) {
+          ref.read(isDropDownShowProvider.notifier).state = false;
         }
         if (value.response) {
           currentPage++;
@@ -93,8 +101,8 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var courseList = ref.watch(courseController).courseList;
-    bool isLoading = ref.watch(courseController).isListLoading;
+    var courseList = ref.watch(searchCourseControllerProvider).courseList;
+    bool isLoading = ref.watch(searchCourseControllerProvider).isListLoading;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -142,9 +150,9 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                       deBouncer.run(() {
                         searchText = value;
                        /* if (value == '') {
-                          ref.read(courseController.notifier).removeAllCourse();
-                          return;
-                        }*/
+                           ref.read(searchCourseControllerProvider.notifier).removeAllCourse();
+                           return;
+                         }*/
 
                         loadData(
                           isRefresh: true,
@@ -169,8 +177,8 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                if (ref.read(isDropDownShow)) {
-                  ref.read(isDropDownShow.notifier).state = false;
+                if (ref.read(isDropDownShowProvider)) {
+                  ref.read(isDropDownShowProvider.notifier).state = false;
                 }
               },
               child: Stack(
@@ -190,55 +198,53 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       16.ph,
-                                      Column(
-                                        children: [
-                                          ...List.generate(
-                                            courseList.length + 1,
-                                            (index) => index < courseList.length
-                                                ? Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 20.h),
-                                                    child: CourseCard(
-                                                      marginBottom: 15,
-                                                      width: double.infinity,
-                                                      model: courseList[index],
-                                                      height: 160,
-                                                      onTap: () {
-                                                        if (courseList[index]
-                                                            .isEnrolled) {
-                                                          context.nav.pushNamed(
-                                                              Routes
-                                                                  .myCourseDetails,
-                                                              arguments:
-                                                                  courseList[
-                                                                          index]
-                                                                      .id);
-                                                        } else {
-                                                          context.nav.pushNamed(
-                                                              Routes.courseNew,
-                                                              arguments: {
-                                                                'courseId':
-                                                                    courseList[
-                                                                            index]
-                                                                        .id
-                                                              });
-                                                        }
-                                                      },
-                                                    ),
-                                                  )
-                                                : hasMoreData &&
-                                                        courseList.length >= 5
-                                                    ? SizedBox(
-                                                        height: 80.h,
-                                                        child:
-                                                            const BusyLoader())
-                                                    : Container(),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16.h),
+                                        child: GridView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 12.h,
+                                            mainAxisSpacing: 12.h,
+                                            childAspectRatio: 0.52,
                                           ),
-                                          32.ph
-                                        ],
+                                          itemCount: courseList.length,
+                                          itemBuilder: (context, index) =>
+                                              CourseCard(
+                                            width: double.infinity,
+                                            model: courseList[index],
+                                            onTap: () {
+                                              if (courseList[index]
+                                                  .isEnrolled) {
+                                                context.nav.pushNamed(
+                                                    Routes.myCourseDetails,
+                                                    arguments:
+                                                        courseList[index].id);
+                                              } else {
+                                                context.nav.pushNamed(
+                                                    Routes.courseNew,
+                                                    arguments: {
+                                                      'courseId':
+                                                          courseList[index].id
+                                                    });
+                                              }
+                                            },
+                                          ),
+                                        ),
                                       ),
-                                      16.ph
+                                      if (hasMoreData &&
+                                          courseList.length >= 5) ...[
+                                        12.ph,
+                                        SizedBox(
+                                            height: 80.h,
+                                            child: const Center(
+                                                child: BusyLoader())),
+                                      ],
+                                      32.ph
                                     ],
                                   ),
                                 )),
@@ -260,11 +266,11 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                           4.pw,
                           GestureDetector(
                             onTap: () {
-                              ref.read(isDropDownShow.notifier).state =
-                                  !ref.read(isDropDownShow);
+                              ref.read(isDropDownShowProvider.notifier).state =
+                                  !ref.read(isDropDownShowProvider);
                             },
                             child: Icon(
-                              ref.watch(isDropDownShow)
+                              ref.watch(isDropDownShowProvider)
                                   ? Icons.keyboard_arrow_up_rounded
                                   : Icons.keyboard_arrow_down_rounded,
                               color: context.color.onSurface,
@@ -273,7 +279,7 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                         ],
                       ),
                     ),
-                  if (ref.watch(isDropDownShow))
+                  if (ref.watch(isDropDownShowProvider))
                     Positioned(
                       top: 58.h,
                       left: 0,
@@ -297,7 +303,7 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                                       onTap: () {
                                         selectedCategory = categoryList[index];
                                         ref
-                                            .read(isDropDownShow.notifier)
+                                            .read(isDropDownShowProvider.notifier)
                                             .state = false;
                                         if (searchText != '') {
                                           loadData(
@@ -307,7 +313,7 @@ class _SearchScreenViewState extends ConsumerState<CourseSearchScreen> {
                                         setState(() {});
                                       },
                                       title:
-                                          "${categoryList[index].title!} ${index == 0 ? "" : "(${categoryList[index].courseCount})"}",
+                                          "${categoryList[index].title ?? ""} ${index == 0 ? "" : "(${categoryList[index].courseCount ?? 0})"}",
                                       isSelected: categoryList[index] ==
                                           selectedCategory,
                                     ),

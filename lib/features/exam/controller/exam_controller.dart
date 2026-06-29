@@ -17,7 +17,7 @@ class ExamController extends StateNotifier<bool> {
     try {
       final response =
           await ref.read(examServiceProvider).startExam(examId: examId);
-      final status = response.statusCode == 201;
+      final status = response.statusCode == 200 || response.statusCode == 201;
       if (status) {
         _examQustion = ExamQustion.fromJson(response.data['data']);
       }
@@ -39,7 +39,7 @@ class ExamController extends StateNotifier<bool> {
       final response = await ref
           .read(examServiceProvider)
           .submitExam(answers: answers, examId: examId);
-      final status = response.statusCode == 201;
+      final status = response.statusCode == 200 || response.statusCode == 201;
       if (status) {
         return ExamResultModel.fromJson(response.data['data']);
       }

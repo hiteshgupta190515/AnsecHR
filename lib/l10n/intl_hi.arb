@@ -224,7 +224,7 @@
   "startQuize": "क्विज़ शुरू करें",
   "perQuestion": "प्रति प्रश्न",
   "pleaseReiewYourAnswers": "कृपया अपने उत्तरों की समीक्षा करें",
-  "onceconfidenttapandoldSubmitbuttonbellow": "एक बार आश्वस्त होने पर, नीचे 'जमा करें' बटन दबाएं और रखें।",
+  "onceconfidenttapandoldSubmitbuttonbellow": "एक बार आश्वस्त होने पर, जमा करने के लिए दबाकर रखें।",
   "answeredQuestions": "उत्तरित प्रश्न",
   "Missed": "छूटे",
   "timeLeft": "शेष समय",

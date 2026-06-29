@@ -1699,6 +1699,42 @@ const testCases = [
     status: "Not Run",
     remarks: "Robust network check."
   },
+  {
+    id: "TC_SRC_021",
+    module: "Search Screen",
+    functionality: "Infinite scroll ANR pagination guard",
+    desc: "Verify scrolling to the bottom of the list doesn't trigger infinite pagination fetch loops or freeze the UI.",
+    pre: "Search course screen is loaded with multiple results.",
+    params: "Scroll to bottom",
+    example: "Scroll list down",
+    expected: "App registers scroll boundary check once, executes standard pagination fetch, and handles layout rendering stably.",
+    status: "Not Run",
+    remarks: "Tests the pagination layout loading loop guard."
+  },
+  {
+    id: "TC_SRC_022",
+    module: "Search Screen",
+    functionality: "State Lifecycle autoDispose Providers",
+    desc: "Perform search, type text, navigate away and reopen the screen. Check that state doesn't freeze on old query / loader spinners.",
+    pre: "Search screen has active results.",
+    params: "Pop screen and push search screen again",
+    example: "Reopen search screen",
+    expected: "Controller and active search state are auto-disposed and reset cleanly, allowing fresh searches without stuck spin loaders.",
+    status: "Not Run",
+    remarks: "Verifies state lifecycle cleanup."
+  },
+  {
+    id: "TC_SRC_023",
+    module: "Search Screen",
+    functionality: "Responsive 2-column grid visual layout",
+    desc: "Verify that cards are rendered in a 2-column grid layout and stack price & details button vertically on narrow screens without horizontal overflows.",
+    pre: "Search course screen has course cards loaded.",
+    params: "None",
+    example: "N/A",
+    expected: "Course cards show clean layout, images fit perfectly using AspectRatio, and meta info displays without bounds overflow warnings.",
+    status: "Not Run",
+    remarks: "Verifies layout scaling stability in 2-column grid."
+  },
 
   // ─── COURSE DETAILS VIEW (15 cases) ─────────────────────────────────────────
   {
@@ -2425,6 +2461,18 @@ const testCases = [
     status: "Not Run",
     remarks: "Controls visibility trigger."
   },
+  {
+    id: "TC_VID_016",
+    module: "Video Player",
+    functionality: "Disable screen sleep/dimming lock",
+    desc: "Play a course video preview or lesson playback and check if screen dims or turns off according to display sleep timeout settings.",
+    pre: "Video lesson is currently playing in Chewie player.",
+    params: "None",
+    example: "N/A",
+    expected: "Screen sleep/dimming timer is locked/disabled, keeping display awake as long as the video player is playing.",
+    status: "Not Run",
+    remarks: "Verifies allowedScreenSleep parameter behavior."
+  },
 
   // ─── PDF DOCUMENT VIEWER (10 cases) ─────────────────────────────────────────
   {
@@ -2788,6 +2836,42 @@ const testCases = [
     expected: "Exam session is saved as incomplete/submitted automatically or allows session resume (depending on rules).",
     status: "Not Run",
     remarks: "Crash resilience session testing."
+  },
+  {
+    id: "TC_EXM_021",
+    module: "Exam Screen",
+    functionality: "Hold-to-submit warning tap",
+    desc: "Single tap the 'Hold to Submit' button at the bottom of the exam questions screen.",
+    pre: "Exam sheet is open.",
+    params: "Tap event",
+    example: "Tap submit button",
+    expected: "A warning snackbar/toast is displayed informing the user to tap and hold to submit.",
+    status: "Not Run",
+    remarks: "Tests tap safety gesture warning."
+  },
+  {
+    id: "TC_EXM_022",
+    module: "Exam Screen",
+    functionality: "Hold-to-submit complete long press",
+    desc: "Long press and hold the submit button until the indicator completes.",
+    pre: "Exam sheet is open.",
+    params: "Long press hold event",
+    example: "Press and hold",
+    expected: "Long press completes, pops the sheet, and redirects the user immediately to the exam result screen.",
+    status: "Not Run",
+    remarks: "Checks successful submission routing."
+  },
+  {
+    id: "TC_EXM_023",
+    module: "Exam Screen",
+    functionality: "Hold-to-submit cancel half-way",
+    desc: "Press and hold the submit button, then release before the hold duration expires.",
+    pre: "Exam sheet is open.",
+    params: "Press and premature release event",
+    example: "Release before complete",
+    expected: "Submission gesture is aborted, and submission indicator resets to 0% progress without submitting.",
+    status: "Not Run",
+    remarks: "Tests long-press abort safety rules."
   },
 
   // ─── QUIZZES & OPTION SELECTORS (15 cases) ──────────────────────────────────
@@ -4174,6 +4258,18 @@ const testCases = [
     expected: "App display alert dialog redirecting user to Settings to grant camera permissions.",
     status: "Not Run",
     remarks: "Checks dynamic permission failures."
+  },
+  {
+    id: "TC_SYS_011",
+    module: "System-wide",
+    functionality: "Global Snackbar ScaffoldMessenger fallback",
+    desc: "Verify that showing snackbars does not fail or crash when no descendant Scaffold is active.",
+    pre: "A snackbar needs to be displayed from a bottom sheet or modal.",
+    params: "None",
+    example: "N/A",
+    expected: "Snackbar displays correctly without throwing assertion exceptions, falling back to try-catch safely.",
+    status: "Not Run",
+    remarks: "Tests global ScaffoldMessenger key safety."
   }
 ];
 

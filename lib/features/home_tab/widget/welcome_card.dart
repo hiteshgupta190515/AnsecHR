@@ -85,10 +85,10 @@ class WelcomeCard extends StatelessWidget {
                       24.ph,
                       Row(
                         children: [
-                          Flexible(
+                          Expanded(
                             child: Text(
                               ' ${totalCourse - 1}+ ${S.of(context).course}',
-                              maxLines: 1,
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyle(context).bodyText.copyWith(
                                     fontSize: 12.sp,
@@ -96,7 +96,7 @@ class WelcomeCard extends StatelessWidget {
                                   ),
                             ),
                           ),
-                          const Spacer(),
+                          16.pw,
                           GestureDetector(
                             onTap: () => context.nav
                                 .pushNamed(Routes.courseSearchScreen),

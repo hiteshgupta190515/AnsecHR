@@ -10,6 +10,7 @@ import 'package:ready_lms/features/exam/model/exam_question.dart';
 import 'package:ready_lms/routes.dart';
 import 'package:ready_lms/utils/context_less_nav.dart';
 import 'package:ready_lms/utils/entensions.dart';
+import 'package:ready_lms/utils/global_function.dart';
 
 import '../../../generated/l10n.dart';
 import '../controller/exam_controller.dart';
@@ -33,7 +34,7 @@ class AnswerReviewBottomSheet extends ConsumerStatefulWidget {
       _AnswerReviewBottomSheetState();
 
   static const String reviewText =
-      "Before submitting, review your answersto make any final changes and ensure you've answered every question to the best of your ability.";
+      "Before submitting, review your answers to make any final changes and ensure you've answered every question to the best of your ability.";
 }
 
 class _AnswerReviewBottomSheetState
@@ -162,13 +163,21 @@ class _AnswerReviewBottomSheetState
             answers: widget.answers, examId: widget.examQustion.examSession.id)
         .then((data) {
       if (data != null) {
-        context.nav.pop();
-        context.nav.popAndPushNamed(Routes.resultScreen, arguments: {
-          'isQuize': false,
-          'quiz': null,
-          'quizDetails': null,
-          'examResult': data,
-        });
+        final navigator = ApGlobalFunctions.navigatorKey.currentState;
+        if (navigator != null) {
+          navigator.pop(); // Pop bottom sheet
+          navigator.pushReplacementNamed(Routes.resultScreen, arguments: {
+            'isQuize': false,
+            'quiz': null,
+            'quizDetails': null,
+            'examResult': data,
+          });
+        }
+      } else {
+        ApGlobalFunctions.showCustomSnackbar(
+          message: "Failed to submit exam. Please try again.",
+          isSuccess: false,
+        );
       }
     });
   }

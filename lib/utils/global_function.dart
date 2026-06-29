@@ -235,9 +235,13 @@ class ApGlobalFunctions {
             )
           : null,
     );
-    ScaffoldMessenger.of(navigatorKey.currentState!.context).showSnackBar(
-      snackBar,
-    );
+    try {
+      scaffoldMessengerKey.currentState?.showSnackBar(
+        snackBar,
+      );
+    } catch (e) {
+      debugPrint("Snackbar failed: $e");
+    }
   }
 
   static noItemFound(
@@ -413,9 +417,11 @@ class ApGlobalFunctions {
     );
   }
 
+  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+
   static GlobalKey<ScaffoldMessengerState> getSnackbarKey() {
-    final snackbarKey = GlobalKey<ScaffoldMessengerState>();
-    return snackbarKey;
+    return scaffoldMessengerKey;
   }
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
